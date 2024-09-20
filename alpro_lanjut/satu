@@ -1,0 +1,8 @@
+alfa small 4 70000 
+beta medium 5 80000 
+charlie large 120000 7000 
+alfa small 4 200000 300000 100000 
+alfa_ medium 2 200000 180000 -20000 
+beta large 6 1200000 1223000 23000 
+charlie medium 3 300000 340000 40000 
+echo small 2 100000 100000 0 
