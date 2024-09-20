@@ -1,0 +1,16 @@
+You are being asked to make a simple program, where they can write and
+read orders which consist of several customers with several orders of
+each customer. 
+- They only asked for 3 menu which Write Order, List Order,
+and Exit.  
+- Customer data consist of name and address, while order data consist of
+name and amount. 
+- They asked that they can sort the order by the customer's name with
+2 kind which ascending and descending. 
+- They allow you to use whatever sort method
+
+Running program instructions :
+1. Don't delete the list_order.txt file (for first time) and 
+   check the file example
+2. Try to run program and check Menu List Order first
+3. After that you can try Menu Write Order

@@ -1,0 +1,95 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+void createLyricsFolder() {
+    string folderName = "lyrics";
+    if (system(("mkdir " + folderName).c_str()) != 0) {
+        cout << "Gagal membuat folder " << folderName << endl;
+    }
+}
+
+void createPlaylist() {
+    string playlistName;
+    cout << "Masukkan nama file playlist: ";
+    cin >> playlistName;
+
+    ofstream playlistFile(playlistName);
+    if (playlistFile.is_open()) {
+        cout << "File playlist " << playlistName << " telah dibuat." << endl;
+        playlistFile.close();
+    } else {
+        cout << "Gagal membuat file playlist " << playlistName << endl;
+    }
+}
+
+void writeLyrics() {
+    string songTitle;
+    cout << "Masukkan judul lagu: ";
+    cin.ignore();
+    getline(cin, songTitle);
+
+    ofstream lyricsFile("lyrics/" + songTitle + ".txt");
+    if (lyricsFile.is_open()) {
+        cout << "Masukkan lirik lagu (akhirkan dengan ----):" << endl;
+        string line;
+        while (getline(cin, line) && line != "----") {
+            lyricsFile << line << endl;
+        }
+        lyricsFile.close();
+        cout << "File lirik " << songTitle << ".txt telah dibuat." << endl;
+    } else {
+        cout << "Gagal membuat file lirik " << songTitle << ".txt" << endl;
+    }
+}
+
+void readLyrics() {
+    string songTitle;
+    cout << "Masukkan judul lagu: ";
+    cin.ignore();
+    getline(cin, songTitle);
+
+    ifstream lyricsFile("lyrics/" + songTitle + ".txt");
+    if (lyricsFile.is_open()) {
+        cout << "Lirik lagu " << songTitle << ".txt:" << endl;
+        string line;
+        while (getline(lyricsFile, line)) {
+            cout << line << endl;
+        }
+        lyricsFile.close();
+    } else {
+        cout << "File lirik tidak ditemukan." << endl;
+    }
+}
+
+int main() {
+    createLyricsFolder();
+
+    while (true) {
+        cout << "\n=== MENU UTAMA ===" << endl;
+        cout << "1. Write" << endl;
+        cout << "2. Read" << endl;
+        cout << "3. Exit" << endl;
+
+        int choice;
+        cout << "Pilih menu (1/2/3): ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                writeLyrics();
+                break;
+            case 2:
+                readLyrics();
+                break;
+            case 3:
+                return 0;
+            default:
+                cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
+        }
+    }
+
+    return 0;
+}
